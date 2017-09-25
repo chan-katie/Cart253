@@ -19,6 +19,8 @@ int circleY;
 int circleVX; 
 // varaible for speed on y axis 
 int circleVY;
+// new variable 
+int currentCircleSize; 
 
 
   // setup()
@@ -55,14 +57,14 @@ void draw() {
   // if the mouse touches the circle change the fill color to variable CLICK_FILL_COLOR
   // else keep the fill color the variable NO_CLICK_FILL_COLOR
   
-    if (dist(mouseX, mouseY, circleX, circleY) < CIRCLE_SIZE/2) {
+    if (dist(mouseX, mouseY, circleX, circleY) < currentCircleSize/2) {
     fill(CLICK_FILL_COLOR);
   }
   else {
     fill(NO_CLICK_FILL_COLOR);
   }
   // draw a circle each frame based on values set by variables  
-  ellipse(circleX, circleY, CIRCLE_SIZE, CIRCLE_SIZE);
+  ellipse(circleX, circleY, currentCircleSize, currentCircleSize);
   
   //add circleVX to the circle  
   
@@ -71,16 +73,21 @@ void draw() {
   //change the y location of the circle in each frame to move it across the screen
   circleY += circleVY;
   
+  //CHANGED
+  //change the size of the circle each frame
+  currentCircleSize = CIRCLE_SIZE + int(random(0,30));
+  //CHANGED
+
   //if statement
   //if specific conditions are meant execute a certain code 
   // make sure the circles don't go off the screen on the x axis
-  if (circleX + CIRCLE_SIZE/2 > width || circleX - CIRCLE_SIZE/2 < 0) {
+  if (circleX + currentCircleSize/2 > width || circleX - currentCircleSize/2 < 0) {
     circleVX = -circleVX;
   }
   //if statement
   //if specific conditions are meant execute a certain code 
   // make sure the circles don't go off the screen on the y axis
-  if (circleY + CIRCLE_SIZE/2 > height || circleY - CIRCLE_SIZE/2 < 0) {
+  if (circleY + currentCircleSize/2 > height || circleY - currentCircleSize/2 < 0) {
     circleVY = -circleVY;
   }
 }
