@@ -90,6 +90,24 @@ void draw() {
   if (circleY + currentCircleSize/2 > height || circleY - currentCircleSize/2 < 0) {
     circleVY = -circleVY;
   }
+  
+  //CHANGED
+  
+  //if statement 
+  // if mouse is on the right side of the screen draw a rectangle 
+  // else draw a circle 
+  
+  if ( mouseX > 320){
+      rectMode(CENTER);
+      rect(circleX, circleY,  currentCircleSize,  currentCircleSize);
+    }
+    
+    else{
+      ellipse(circleX, circleY,  currentCircleSize,  currentCircleSize);
+    }
+
+  //CHANGED
+  
 }
 
 //mousePressed()
