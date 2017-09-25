@@ -23,6 +23,7 @@ int circleVY;
 int currentCircleSize; 
 
 
+
   // setup()
   //
   // sets the inital size, background etc. 
@@ -66,7 +67,19 @@ void draw() {
   // draw a circle each frame based on values set by variables  
   ellipse(circleX, circleY, currentCircleSize, currentCircleSize);
   
-  //add circleVX to the circle  
+  
+ //CHANGED
+  
+  //if statement 
+  // if mouse is on the right side of the screen draw a rectangle and fill it with random color 
+  
+  if ( mouseX > height/2){
+      rectMode(CENTER);
+      fill(random(255), random(255), random(255));
+      rect(circleX, circleY,  currentCircleSize,  currentCircleSize);
+      }
+
+  //CHANGED
   
   //change the x location of the circle in each frame to move it across the screen
   circleX += circleVX;
@@ -91,23 +104,7 @@ void draw() {
     circleVY = -circleVY;
   }
   
-  //CHANGED
-  
-  //if statement 
-  // if mouse is on the right side of the screen draw a rectangle 
-  // else draw a circle 
-  
-  if ( mouseX > 320){
-      rectMode(CENTER);
-      rect(circleX, circleY,  currentCircleSize,  currentCircleSize);
-    }
-    
-    else{
-      ellipse(circleX, circleY,  currentCircleSize,  currentCircleSize);
-    }
 
-  //CHANGED
-  
 }
 
 //mousePressed()
