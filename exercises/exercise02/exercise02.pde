@@ -130,12 +130,29 @@ void drawPaddle() {
 //drawBall()
 // function to draw ball define stroke, color etc. 
 
+
+
+
+
 void drawBall() {
   rectMode(CENTER);
   noStroke();
   fill(ballColor);
   rect(ballX, ballY, ballSize, ballSize);
+  
+  //CHANGED
+  // add 10 random balls on the screen in different positions 
+  for (int i=0; i < 11; i++){
+   int ballX = int(random(0,width));
+   int ballY = int(random(0,height));
+   rect(ballX,ballY,ballSize,ballSize);
+   //CHANGED
+
+  }
+  
 }
+
+
 
 //handleBallHitPaddle()
 // function what to do when the ball touches the paddle
@@ -150,8 +167,8 @@ void handleBallHitPaddle() {
     ballVY = -ballVY;
     
     //CHANGED
-    //make ball a random color whenever it hits the paddle
-    ballColor = color(random(255), random(255), random(255));
+    //make ball a random color whene
+    ballColor = color(random(100,255), random(100,255), random(100,255));
     //CHANGED
   }
 }
