@@ -148,6 +148,11 @@ void handleBallHitPaddle() {
   if (ballOverlapsPaddle()) {
     ballY = paddleY - paddleHeight/2 - ballSize/2;
     ballVY = -ballVY;
+    
+    //CHANGED
+    //make ball a random color whenever it hits the paddle
+    ballColor = color(random(255), random(255), random(255));
+    //CHANGED
   }
 }
 
@@ -170,9 +175,10 @@ boolean ballOverlapsPaddle() {
        return true;
     }
   }
-  
+
   //the ball has not hit the paddle 
   return false; 
+  
 }
 
 // handleBallOffBottom()
