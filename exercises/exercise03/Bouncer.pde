@@ -34,18 +34,26 @@ class Bouncer {
 
   //handleBounce()
   //ensures the lines stay on the screen 
-  void handleBounce() {
+  
+void handleBounce() {
     //if statement
     //if the line hits the left or right walls reverse it speed
     if (x - size/2 < 0 || x + size/2 > width) {
       vx = -vx;
+      //CHANGED
+      //change the x location if bouncer hits left or right walls
+      x = 320;
+      //CHANGED
     }
     //if statement 
     //if the line hits the top or bottom walls reverse its speed
     if (y - size/2 < 0 || y + size/2 > height) {
       vy = -vy;
+      //CHANGED
+      //change y location if the bouncer hits top or bottom walls 
+      y=240;
+      //CHANGED
     }
-
 
     //contrain x value so circle never goes off the screen on the x axis  
     x = constrain(x, size/2, width-size/2);
