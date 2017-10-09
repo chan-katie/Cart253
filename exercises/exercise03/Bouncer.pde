@@ -34,39 +34,39 @@ class Bouncer {
 
   //handleBounce()
   //ensures the lines stay on the screen 
-  
-void handleBounce() {
+
+  void handleBounce() {
     //if statement
     //if the line hits the left or right walls reverse it speed
     if (x - size/2 < 0 || x + size/2 > width) {
       vx = -vx;
-      //CHANGED
+      //Exercise 03 - change position//
       //change the x location if bouncer hits left or right walls
       x = 320;
-      //CHANGED
+      //Exercise 03 - change position//
     }
     //if statement 
     //if the line hits the top or bottom walls reverse its speed
     if (y - size/2 < 0 || y + size/2 > height) {
       vy = -vy;
-      //CHANGED
+      //Exercise 03 - change position//
       //change y location if the bouncer hits top or bottom walls 
       y=240;
-      //CHANGED
+      //Exercise 03 - change position//
     }
 
     //contrain x value so circle never goes off the screen on the x axis  
     x = constrain(x, size/2, width-size/2);
-    println(x);
+
     //contrain y value so circle never goes off the screen on the y axis 
     y = constrain(y, size/2, height-size/2);
   }
 
   //handleMouse()
-  //what the mouse does 
+  //what the mouse does  
   void handleMouse() {
     //if statement 
-    //if distance between the mouse touches the circle change the fill color
+    //if the mouse touches the circle change the fill color
     //else keep it the default color 
     if (dist(mouseX, mouseY, x, y) < size/2) {
       fillColor = hoverColor;
@@ -75,6 +75,16 @@ void handleBounce() {
     }
   }
 
+  //Exercise 03 - mouse click action//
+  //mouseCheck()
+  //if the mouse has been clicked change the background color and the color of both bouncers 
+  void mouseCheck() {
+    background(0);
+    defaultColor = color(random(100, 255), random(100, 255), random(100, 255), 50);
+    hoverColor= color(random(100, 255), random(100, 255), random(100, 255), 50);
+  }
+  //Exercise 03 - mouse click action //
+  
   //draw()
   //loops code untill you tell it to stop
   //drawing the circles 
