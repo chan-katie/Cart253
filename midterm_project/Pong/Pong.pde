@@ -10,7 +10,7 @@
 // Only two paddles. (So far!)
 
 // Global variables for the paddles and the ball
-Paddle leftPaddle;
+Paddle leftPaddle; 
 Paddle rightPaddle;
 Ball ball;
 
@@ -41,6 +41,8 @@ void setup() {
   ball = new Ball(width/2, height/2);
 }
 
+
+
 // draw()
 //
 // Handles all the magic of making the paddles and ball move, checking
@@ -61,7 +63,7 @@ void draw() {
 
   // Check if the ball has gone off the screen
   if (ball.isOffScreen()) {
-    // If it has, reset the ball
+   // If it has, reset the ball
     ball.reset();
   }
 
@@ -69,18 +71,24 @@ void draw() {
   leftPaddle.display();
   rightPaddle.display();
   ball.display();
+  
+  //display the score of the game 
+  ball.score();
 }
 
 // keyPressed()
 //
-// The paddles need to know if they should move based on a keypress
+// The paddles and the ball need to know if they should move based on a keypress
 // so when the keypress is detected in the main program we need to
-// tell the paddles
+// tell the paddles and the ball
 
 void keyPressed() {
   // Just call both paddles' own keyPressed methods
   leftPaddle.keyPressed();
   rightPaddle.keyPressed();
+  
+  //Calling the balls' own keyPressed methods 
+  ball.keyPressed();
 }
 
 // keyReleased()

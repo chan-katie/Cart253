@@ -22,6 +22,10 @@ class Ball {
   // The colour of the ball
   color ballColor = color(255);
 
+  // counts the time the paddle hits the ball 
+  int scoreLeft=0;
+  int scoreRight=0;
+  char restart='r';
 
   /////////////// Constructor ///////////////
 
@@ -42,7 +46,48 @@ class Ball {
   }
 
 
-  /////////////// Methods ///////////////
+  /////////////// Methods ////////////////
+
+  //score()
+  //This is called by the main program once per frame. To calculate the score.
+  //Once game is over a Game Over screen pops up prompting user to restart game 
+  //and gives information about who won the game. 
+  
+  void score() {
+    
+    if (x>640) {
+      scoreLeft++;
+    }
+
+    if (x<0) {
+      scoreRight++;
+    }
+
+    textSize(26); 
+    text(scoreLeft, 160, 50);
+    text(scoreRight, 460, 50);
+
+    if (scoreLeft == 2 ) {
+      x=640;
+      y=400;
+      vx=0;
+      vy=0;
+      background(0);
+      textAlign(CENTER);
+      text("Game Over! Player 1 Won!", width/2, 200);
+      text("Press 'r' to restart", width/2, 240);
+     }
+    else if (scoreRight == 2 ) {
+      x=640;
+      y=400;
+      vx=0;
+      vy=0;
+      background(0);
+      textAlign(CENTER, CENTER);
+      text("Game Over! Player 2 Won!", width/2, 200);
+      text("Press 'r' to restart", width/2, 240);
+    }
+  }
 
   // update()
   //
@@ -61,17 +106,17 @@ class Ball {
       vy = -vy;
     }
   }
-  
+
   // reset()
   //
   // Resets the ball to the centre of the screen.
   // Note that it KEEPS its velocity
-  
+
   void reset() {
     x = width/2;
     y = height/2;
   }
-  
+
   // isOffScreen()
   //
   // Returns true if the ball is off the left or right side of the window
@@ -79,7 +124,7 @@ class Ball {
   // (If we wanted to return WHICH side it had gone off, we'd have to return
   // something like an int (e.g. 0 = not off, 1 = off left, 2 = off right)
   // or a String (e.g. "ON SCREEN", "OFF LEFT", "OFF RIGHT")
-  
+
   boolean isOffScreen() {
     return (x + SIZE/2 < 0 || x - SIZE/2 > width);
   }
@@ -96,7 +141,7 @@ class Ball {
     boolean insideRight = (x - SIZE/2 < paddle.x + paddle.WIDTH/2);
     boolean insideTop = (y + SIZE/2 > paddle.y - paddle.HEIGHT/2);
     boolean insideBottom = (y - SIZE/2 < paddle.y + paddle.HEIGHT/2);
-    
+
     // Check if the ball overlaps with the paddle
     if (insideLeft && insideRight && insideTop && insideBottom) {
       // If it was moving to the left
@@ -124,5 +169,16 @@ class Ball {
 
     // Draw the ball
     rect(x, y, SIZE, SIZE);
+  }
+
+  // keyPressed()
+  //
+  // Called when keyPressed is called in the main program
+  
+  void keyPressed() {
+  //if the 'r' key is pressed run setup() which will restart game
+    if (key == 'r') {
+      setup();
+    }
   }
 }
