@@ -9,7 +9,7 @@ class Ball {
 
   // Default values for speed and size
   int SPEED = 5;
-  int SIZE = 16;
+  int SIZE = 35;
 
   // The location of the ball
   int x;
@@ -19,13 +19,16 @@ class Ball {
   int vx;
   int vy;
 
-  // The colour of the ball
-  color ballColor = color(255);
+  // The fill of the ball
+  PImage ballFill;
 
   // counts the time the paddle hits the ball 
   int scoreLeft=0;
   int scoreRight=0;
   char restart='r';
+
+
+
 
   /////////////// Constructor ///////////////
 
@@ -52,40 +55,23 @@ class Ball {
   //This is called by the main program once per frame. To calculate the score.
   //Once game is over a Game Over screen pops up prompting user to restart game 
   //and gives information about who won the game. 
-  
-  void score() {
-    
-    if (x>640) {
-      scoreLeft++;
-    }
 
-    if (x<0) {
-      scoreRight++;
-    }
+  void score() {
 
     textSize(26); 
     text(scoreLeft, 160, 50);
     text(scoreRight, 460, 50);
 
-    if (scoreLeft == 2 ) {
-      x=640;
-      y=400;
-      vx=0;
-      vy=0;
-      background(0);
-      textAlign(CENTER);
-      text("Game Over! Player 1 Won!", width/2, 200);
-      text("Press 'r' to restart", width/2, 240);
-     }
-    else if (scoreRight == 2 ) {
-      x=640;
-      y=400;
-      vx=0;
-      vy=0;
-      background(0);
-      textAlign(CENTER, CENTER);
-      text("Game Over! Player 2 Won!", width/2, 200);
-      text("Press 'r' to restart", width/2, 240);
+    if (x > 640 ) {
+      scoreLeft++;
+      reset();
+    } else if (x < 0 ) {
+      scoreRight++;
+      reset();
+    } else if (scoreLeft == 5 ) {
+      background(loadImage("one-win.jpg"));
+    } else if (scoreRight == 5 ) {
+      background(loadImage("two-win.jpg"));
     }
   }
 
@@ -162,21 +148,25 @@ class Ball {
   // Draw the ball at its position
 
   void display() {
+
+    ballFill = loadImage("pizza-ball.png");
+
     // Set up the appearance of the ball (no stroke, a fill, and rectMode as CENTER)
-    noStroke();
-    fill(ballColor);
+    //noStroke();
     rectMode(CENTER);
 
     // Draw the ball
-    rect(x, y, SIZE, SIZE);
+    //rect(x, y, SIZE, SIZE);
+
+    image(ballFill, x, y, SIZE, SIZE);
   }
 
   // keyPressed()
   //
   // Called when keyPressed is called in the main program
-  
+
   void keyPressed() {
-  //if the 'r' key is pressed run setup() which will restart game
+    //if the 'r' key is pressed run setup() which will restart game
     if (key == 'r') {
       setup();
     }

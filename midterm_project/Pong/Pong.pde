@@ -18,8 +18,10 @@ Ball ball;
 int PADDLE_INSET = 8;
 
 // The background colour during play (black)
-color backgroundColor = color(0);
+//color backgroundColor = color(0);
 
+// The background image 
+PImage bg;
 
 // setup()
 //
@@ -28,6 +30,8 @@ color backgroundColor = color(0);
 void setup() {
   // Set the size
   size(640, 480);
+  
+   bg = loadImage("board.jpg");
 
   // Create the paddles on either side of the screen. 
   // Use PADDLE_INSET to to position them on x, position them both at centre on y
@@ -50,7 +54,7 @@ void setup() {
 
 void draw() {
   // Fill the background each frame so we have animation
-  background(backgroundColor);
+   background(bg);
 
   // Update the paddles and ball by calling their update methods
   leftPaddle.update();
