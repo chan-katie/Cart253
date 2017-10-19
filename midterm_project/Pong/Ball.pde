@@ -22,12 +22,13 @@ class Ball {
   // The fill of the ball
   PImage ballFill;
 
-  // counts the time the paddle hits the ball 
+  // tracks the score for both players
   int scoreLeft=0;
   int scoreRight=0;
   char restart='r';
 
-
+ //The number of times the ball hits the paddle during the game
+  int paddleHit = 0;
 
 
   /////////////// Constructor ///////////////
@@ -57,10 +58,11 @@ class Ball {
   //and gives information about who won the game. 
 
   void score() {
-
-    textSize(26); 
-    text(scoreLeft, 160, 50);
-    text(scoreRight, 460, 50);
+    fill(0);
+    textSize(15); 
+    textAlign(CENTER);
+    text("Player 1 Score: "+scoreLeft, 160, 50);
+    text("Player 2 Score: "+scoreRight, 460, 50);
 
     if (x > 640 ) {
       scoreLeft++;
@@ -69,8 +71,12 @@ class Ball {
       scoreRight++;
       reset();
     } else if (scoreLeft == 5 ) {
+      vx=0;
+      vy=0;
       background(loadImage("one-win.jpg"));
     } else if (scoreRight == 5 ) {
+      vx=0;
+      vy=0;
       background(loadImage("two-win.jpg"));
     }
   }
@@ -100,7 +106,8 @@ class Ball {
 
   void reset() {
     x = width/2;
-    y = height/2;
+    y = int(random(50,430));
+
   }
 
   // isOffScreen()
@@ -140,8 +147,29 @@ class Ball {
       }
       // And make it bounce
       vx = -vx;
-    }
+      paddleHit++;
+      
+      if (paddleHit==3){
+
+      }
+    } 
   }
+  
+    void checkHit() {
+      //Calculate possible overlaps with the paddle side by side
+    boolean Left = (x + SIZE/2 >  obstacle.x - obstacle.obstacleHeight/2);
+    boolean Right = (x - SIZE/2 < obstacle.x + obstacle.obstacleHeight/2);
+    boolean Top = (y + SIZE/2 > obstacle.y - obstacle.obstacleWidth/2);
+    boolean Bottom = (y - SIZE/2 < obstacle.y + obstacle.obstacleWidth/2);
+
+  // Check if the ball overlaps with the paddle
+    if (Left && Right && Top && Bottom) {
+  
+   
+     vx = -vx;
+    
+    }
+}
 
   // display()
   //
@@ -151,13 +179,11 @@ class Ball {
 
     ballFill = loadImage("pizza-ball.png");
 
-    // Set up the appearance of the ball (no stroke, a fill, and rectMode as CENTER)
-    //noStroke();
-    rectMode(CENTER);
+    // Set up the appearance of the ball (no stroke, a fill, and imageMode as CENTER)
+    noStroke();
+    imageMode(CENTER);
 
-    // Draw the ball
-    //rect(x, y, SIZE, SIZE);
-
+    // Draw the image ball
     image(ballFill, x, y, SIZE, SIZE);
   }
 
@@ -169,6 +195,7 @@ class Ball {
     //if the 'r' key is pressed run setup() which will restart game
     if (key == 'r') {
       setup();
+   
     }
   }
 }

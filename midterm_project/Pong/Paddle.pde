@@ -25,6 +25,11 @@ class Paddle {
   char upKey;
   char downKey;
 
+
+ // The fill of the ball
+  PImage paddleFill;
+  
+
   /////////////// Constructor ///////////////
 
   // Paddle(int _x, int _y, char _upKey, char _downKey)
@@ -41,6 +46,7 @@ class Paddle {
     upKey = _upKey;
     downKey = _downKey;
   }
+
 
 
   /////////////// Methods ///////////////
@@ -64,21 +70,23 @@ class Paddle {
   // Display the paddle at its location
 
   void display() {
-    // Set display properties
-    noStroke();
-    fill(paddleColor);
-    rectMode(CENTER);
 
-    // Draw the paddle as a rectangle
-    rect(x, y, WIDTH, HEIGHT);
+    paddleFill = loadImage("paddle.png");
+
+    // Set up the appearance of the paddle (no stroke, a fill, and imageMode as CENTER)
+    noStroke();
+    imageMode(CENTER);
+
+    // Draw the image paddle
+    image(paddleFill, x, y, WIDTH, HEIGHT);
   }
 
   // keyPressed()
   //
   // Called when keyPressed is called in the main program
 
-  void keyPressed() {
-    // Check if the key is our up key
+void keyPressed() {
+    // upKey = keyCode; Check if the key is our up key
     if (key == upKey) {
       // If so we want a negative y velocity
       vy = -SPEED;
