@@ -35,17 +35,22 @@ class Griddie {
   void update() {
     
     // QUESTION: What is this if-statement for?
+    //it checks if the gridde is dead 
     if (energy == 0) {
       return;
     }
     
     // QUESTION: How does the Griddie movement updating work?
+    //it choose a random value between -1 and 1 as the increment
+    //then moves that amount of grid sizes across the screen.
+    //in both horonzontal and vertical alignment
     int xMoveType = floor(random(-1,2));
     int yMoveType = floor(random(-1,2));
     x += size * xMoveType;
     y += size * yMoveType;
     
     // QUESTION: What are these if statements doing?
+    //if the gridde goes off the screen on x or y reverse its direction.
     if (x < 0) {
       x += width;
     }
@@ -74,11 +79,13 @@ class Griddie {
   
   void collide(Griddie other) {
     // QUESTION: What is this if-statement for?
+    //is checking to see if either of the griddes are dead if so there can't be a colision 
     if (energy == 0 || other.energy == 0) {
       return;
     }
     
     // QUESTION: What does this if-statement check?
+    // if they are in the same location 
     if (x == other.x && y == other.y) {
       // Increase this Griddie's energy
       energy += collideEnergy;
@@ -92,6 +99,7 @@ class Griddie {
   // Draw the Griddie on the screen as a rectangle
   void display() {
     // QUESTION: What does this fill line do?
+    //when the gridde gains more energy opacity increases, if it looses energy opacity decreases
     fill(fill, energy); 
     noStroke();
     rect(x, y, size, size);
