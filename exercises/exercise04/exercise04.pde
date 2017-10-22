@@ -10,7 +10,7 @@
 int gridSize = 20;
 // An array storing all the griddies
 Griddie[] griddies = new Griddie[100];
-NewThing[] newThings = new NewThing[2];
+NewThing[] newThings = new NewThing[3];
 
 // setup()
 //
@@ -32,12 +32,11 @@ void setup() {
 
   // initialize each newThings in the newThings array. 
   // to a new newThings object with a random x and y within the screen size
-    for (int i = 0; i < newThings.length; i++) {
+  for (int i = 0; i < newThings.length; i++) {
     int x = floor(random(0, width/gridSize));
     int y = floor(random(0, height/gridSize));
-    newThings[i] = new NewThing(x * gridSize, y * gridSize,60);
+    newThings[i] = new NewThing(x * gridSize, y * gridSize, 3, gridSize);
   }
-  
 }
 
 // draw()
@@ -63,23 +62,23 @@ void draw() {
         griddies[i].collide(griddies[j]);
       }
     }
-    
+
     // Display the griddies
     griddies[i].display();
   }
-  
-    // We need to loop through all the newThings one by one
+
+  // We need to loop through all the newThings one by one
   for (int i = 0; i < newThings.length; i++) {
-  
-  // Update the newThings
+
+    // Update the newThings
     newThings[i].update();
 
-  //See if the newThings collide with the griddies
-   for (int j = 0; j < griddies.length; j++) {
-          newThings[i].collide(griddies[j]);
+    //See if the newThings collide with the griddies
+    for (int j = 0; j < griddies.length; j++) {
+      newThings[i].collide(griddies[j]);
     }
-   
-    
+
+
     // Display the newThings
     newThings[i].display();
   }
