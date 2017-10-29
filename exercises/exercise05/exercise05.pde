@@ -1,17 +1,39 @@
 // Exercise 05
 // by Katie Chan
 
-float t = 0;
-int x = 0;
+
+int dotSize = 20;
+
+dot[] dots = new dot[200];
+
+// setup()
+//
+// Set up the window and the dots
+
 void setup() {
-  size(600,600);
-  background(0);
-  stroke(500);
+   // Set up the window
+  size(500,500);
+
+    // initialize each dot in the dot array. 
+    for (int i = 0; i < dots.length; i++) {
+    int x = floor(random(0, width/dotSize));
+    int y = floor(random(0, height/dotSize));
+    dots[i] = new dot(x * dotSize, y * dotSize, dotSize);
+  }
 }
+
+// draw()
+//
+// Update all the griddies, check for collisions between them, display them.
 void draw() {
-  float n = noise(t);
-  float r = random(0,1);
-  ellipse(x,n*height,10,10);
-  x++;
-  t += 0.01;
+    background(0);
+    
+ 
+
+    // Display the dots
+    dot.display();
+ 
+  
+
+  
 }
