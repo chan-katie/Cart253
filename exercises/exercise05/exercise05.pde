@@ -3,8 +3,9 @@
 
 int dotSize = 5;
 int size = 20;
+int count;
 
-dot[] dots = new dot[100];
+dot[] dots= new dot[200];
 
 
 // setup()
@@ -14,6 +15,7 @@ dot[] dots = new dot[100];
 void setup() {
   // Set up the window
   size(500, 500);
+
 
   // initialize each dot in the dot array. 
   //code taken from exercise 04 by Pippin Barr
@@ -31,17 +33,17 @@ void setup() {
 void draw() {
   background(0);
 
-//code taken from exercise 04 by Pippin Barr
+  //code taken from exercise 04 by Pippin Barr
   // We need to loop through all the dots one by one
   for (int i = 0; i < dots.length; i++) {
-//code taken from exercise 04 by Pippin Barr
-
-    // Update the griddies
-    dots[i].update();
+    //code taken from exercise 04 by Pippin Barr
 
     // Display the dots
     dots[i].display();
 
-    dots[i].mouseClicked();
+    // Update the dots
+    dots[i].update();
+    
+    
   }
 }
