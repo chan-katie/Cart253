@@ -13,6 +13,10 @@ Capture video;
 // as a default value)
 PVector brightestPixel = new PVector(-1,-1);
 
+
+// The torch image
+PImage torchFill;
+
 // An array of bouncers to play with
 Bouncer[] bouncers = new Bouncer[10];
 
@@ -57,11 +61,9 @@ void draw() {
    bouncers[i].display();
   }
   
-  // For now we just draw a crappy ellipse at the brightest pixel
-  fill(#ff0000);
-  stroke(#ffff00);
-  strokeWeight(10);
-  ellipse(brightestPixel.x,brightestPixel.y,20,20);
+  //calling torch image and at the brightest pixel
+  torchFill=loadImage("torch.png");
+  image(torchFill,brightestPixel.x,brightestPixel.y,30,30);
 }
 
 // handleVideoInput

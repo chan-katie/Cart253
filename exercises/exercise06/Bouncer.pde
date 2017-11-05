@@ -76,7 +76,7 @@ class Bouncer {
   // and with its fill
   void display() {
     noStroke();
-    fill(fillColor);
+    fill(0);
     ellipse(x, y, size, size);
   }
 }
