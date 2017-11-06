@@ -21,11 +21,9 @@ class Bouncer {
 
   // The default fill colour of the Bouncer
   color defaultColor;
-  
-  
-   int energy= 255;
 
-
+  // The default energy level of the Bouncer 
+  int energy= 255;
 
   // Bouncer(tempX,tempY,tempVX,tempVY,tempSize,tempDefaultColor)
   //
@@ -46,8 +44,8 @@ class Bouncer {
   // Adds the Bouncer's current velocity to its position
   // and checks for bouncing off the walls.
   void update() {
-    
-    
+
+
     x += vx;
     y += vy;
 
@@ -80,20 +78,18 @@ class Bouncer {
 
   //checkHit()
   //
-  // check to see if the ball hits the torch and do something 
+  // check to see if the ball hits the torch. If it does make the energy 0 
   void checkHit() {
 
     if ((dist(x, y, brightestPixel.x, brightestPixel.y) <= size/2 + 15 )) {
-      energy=0; 
+      energy=0;
     }
   }
-
-
 
   // display()
   //
   // Draw an ellipse in the Bouncer's location, with its size
-  // and with its fill
+  // and with its fill and energy levels 
   void display() {
     noStroke();
     fill(244, 167, 66, energy);

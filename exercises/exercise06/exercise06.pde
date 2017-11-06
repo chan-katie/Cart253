@@ -20,8 +20,6 @@ PImage torchFill;
 //track the time 
 int time;
 
-
-
 // An array of bouncers to play with
 Bouncer[] bouncers = new Bouncer[15];
 
@@ -34,8 +32,6 @@ void setup() {
 
   //store current time 
   time = millis();
-
-
 
   // Our old friend the for-loop used to go through the length of an
   // array adding new objects to it (Bouncers in this case)
@@ -71,8 +67,6 @@ void draw() {
     bouncers[i].display();
     bouncers[i].checkHit();
 
-    brightestPixel.y=200;
-    brightestPixel.x=200;
 
     //if statement
     // if it takes you more then 10 seconds to make all the balls dissapear restart game 
@@ -81,12 +75,9 @@ void draw() {
       fill(255);
       textSize(25); 
       textAlign(CENTER);
-      text("You Lost! Press R to Restart ", 320, 240);
-      
+      text("You Lost! Press 'R' to Restart ", 320, 240);
     }
   }
-
-
 
 
   //calling torch image at the brightest pixel
