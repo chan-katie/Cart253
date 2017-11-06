@@ -21,6 +21,9 @@ class Bouncer {
 
   // The default fill colour of the Bouncer
   color defaultColor;
+  
+  
+   int energy= 255;
 
 
 
@@ -43,6 +46,8 @@ class Bouncer {
   // Adds the Bouncer's current velocity to its position
   // and checks for bouncing off the walls.
   void update() {
+    
+    
     x += vx;
     y += vy;
 
@@ -79,16 +84,11 @@ class Bouncer {
   void checkHit() {
 
     if ((dist(x, y, brightestPixel.x, brightestPixel.y) <= size/2 + 15 )) {
-
-      fill(229, 139, 22);
-      ellipse(x, y, size, size);
+      energy=0; 
     }
   }
 
-  void collide() {
-    fill(229, 139, 22);
-    ellipse(x, y, size, size);
-  }
+
 
   // display()
   //
@@ -96,7 +96,7 @@ class Bouncer {
   // and with its fill
   void display() {
     noStroke();
-    fill(255);
+    fill(244, 167, 66, energy);
     ellipse(x, y, size, size);
   }
 }

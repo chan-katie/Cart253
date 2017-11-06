@@ -11,11 +11,16 @@ Capture video;
 // A PVector allows us to store an x and y location in a single object
 // When we create it we give it the starting x and y (which I'm setting to -1, -1
 // as a default value)
-PVector brightestPixel = new PVector(-1,-1);
+PVector brightestPixel = new PVector(-1, -1);
 
 
 // The torch image
 PImage torchFill;
+
+//track the time 
+int time;
+
+
 
 // An array of bouncers to play with
 Bouncer[] bouncers = new Bouncer[15];
@@ -27,15 +32,18 @@ Bouncer[] bouncers = new Bouncer[15];
 void setup() {
   size(640, 480);
 
+  //store current time 
+  time = millis();
+
 
 
   // Our old friend the for-loop used to go through the length of an
   // array adding new objects to it (Bouncers in this case)
   for (int i = 0; i < bouncers.length; i++) {
     // Each Bouncer just starts with random values 
-    bouncers[i] = new Bouncer(random(0,width),random(0,height),random(-10,10),random(-10,10),random(20,50),color(random(255)));
+    bouncers[i] = new Bouncer(random(0, width), random(0, height), random(-10, 10), random(-10, 10), random(20, 50), color(random(255)));
   }
-  
+
   // Start up the webcam
   video = new Capture(this, 640, 480, 30);
   video.start();
@@ -53,22 +61,37 @@ void draw() {
 
   // Draw the video frame to the screen
   image(video, 0, 0);
-  
+
   // Our old friend the for-loop running through the length of an array to
   // update and display objects, in this case Bouncers.
   // If the brightness (or other video property) is going to interact with all the
   // Bouncers, it will need to happen in here.
   for (int i = 0; i < bouncers.length; i++) {
-   bouncers[i].update();
-   bouncers[i].display();
-   bouncers[i].checkHit();
-   //brightestPixel.y=200;
-   //brightestPixel.x=200;
- }
-  
-//calling torch image at the brightest pixel
+    bouncers[i].update();
+    bouncers[i].display();
+    bouncers[i].checkHit();
+
+    brightestPixel.y=200;
+    brightestPixel.x=200;
+
+    //if statement
+    // if it takes you more then 10 seconds to make all the balls dissapear restart game 
+    if (millis() - time >= 10000) {
+      background(0);
+      fill(255);
+      textSize(25); 
+      textAlign(CENTER);
+      text("You Lost! Press R to Restart ", 320, 240);
+      
+    }
+  }
+
+
+
+
+  //calling torch image at the brightest pixel
   torchFill=loadImage("torch.png");
-  image(torchFill,brightestPixel.x,brightestPixel.y,30,30);
+  image(torchFill, brightestPixel.x, brightestPixel.y, 30, 30);
 }
 
 // handleVideoInput
@@ -82,7 +105,7 @@ void handleVideoInput() {
     // If not, then just return, nothing to do
     return;
   }
-  
+
   // If we're here, there IS a frame to look at so read it in
   video.read();
 
@@ -109,8 +132,19 @@ void handleVideoInput() {
         // brightestPixel's x and y properties.
         brightestPixel.x = x;
         brightestPixel.y = y;
-  
       }
     }
+  }
+}
+
+
+// keyPressed()
+//
+// Called when keyPressed is called in the main program
+
+void keyPressed() {
+  //if the 'r' key is pressed run setup() which will restart game
+  if (key == 'r') {
+    setup();
   }
 }
