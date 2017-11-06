@@ -18,7 +18,7 @@ PVector brightestPixel = new PVector(-1,-1);
 PImage torchFill;
 
 // An array of bouncers to play with
-Bouncer[] bouncers = new Bouncer[10];
+Bouncer[] bouncers = new Bouncer[15];
 
 // setup()
 //
@@ -26,6 +26,8 @@ Bouncer[] bouncers = new Bouncer[10];
 
 void setup() {
   size(640, 480);
+
+
 
   // Our old friend the for-loop used to go through the length of an
   // array adding new objects to it (Bouncers in this case)
@@ -59,9 +61,12 @@ void draw() {
   for (int i = 0; i < bouncers.length; i++) {
    bouncers[i].update();
    bouncers[i].display();
-  }
+   bouncers[i].checkHit();
+   //brightestPixel.y=200;
+   //brightestPixel.x=200;
+ }
   
-  //calling torch image and at the brightest pixel
+//calling torch image at the brightest pixel
   torchFill=loadImage("torch.png");
   image(torchFill,brightestPixel.x,brightestPixel.y,30,30);
 }
@@ -83,8 +88,8 @@ void handleVideoInput() {
 
   // Start with a very low "record" for the brightest pixel
   // so that we'll definitely find something better
-  float brightnessRecord = 0;
-
+  float brightnessRecord = 0;  
+  int size=30;
   // Go through every pixel in the grid of pixels made by this
   // frame of video
   for (int x = 0; x < video.width; x++) {
@@ -104,6 +109,7 @@ void handleVideoInput() {
         // brightestPixel's x and y properties.
         brightestPixel.x = x;
         brightestPixel.y = y;
+  
       }
     }
   }

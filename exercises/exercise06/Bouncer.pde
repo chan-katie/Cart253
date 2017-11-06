@@ -22,6 +22,8 @@ class Bouncer {
   // The default fill colour of the Bouncer
   color defaultColor;
 
+
+
   // Bouncer(tempX,tempY,tempVX,tempVY,tempSize,tempDefaultColor)
   //
   // Creates a Bouncer with the provided values by remembering them.
@@ -47,6 +49,7 @@ class Bouncer {
     handleBounce();
   }
 
+
   // handleBounce()
   //
   // Checks if the bouncer is overlapping a side of the window
@@ -70,13 +73,30 @@ class Bouncer {
     y = constrain(y, size/2, height-size/2);
   }
 
+  //checkHit()
+  //
+  // check to see if the ball hits the torch and do something 
+  void checkHit() {
+
+    if ((dist(x, y, brightestPixel.x, brightestPixel.y) <= size/2 + 15 )) {
+
+      fill(229, 139, 22);
+      ellipse(x, y, size, size);
+    }
+  }
+
+  void collide() {
+    fill(229, 139, 22);
+    ellipse(x, y, size, size);
+  }
+
   // display()
   //
   // Draw an ellipse in the Bouncer's location, with its size
   // and with its fill
   void display() {
     noStroke();
-    fill(0);
+    fill(255);
     ellipse(x, y, size, size);
   }
 }
