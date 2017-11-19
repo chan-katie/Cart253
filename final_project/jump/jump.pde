@@ -6,9 +6,14 @@
 //
 // By: Katie Chan 
 
+// Global variables for the cube and platforms
+Platform leftPlatform; 
+Platform rightPlatform; 
+
+
 // consts for states  
 final int stateGame=0;
-final int stateMenu = 1;
+final int stateMenu=1;
 // current state 
 int state = stateMenu;
 
@@ -23,7 +28,12 @@ void setup() {
   //set the size 
   size(375, 665);
 
+//load startscreen image
   start = loadImage("imgs/start.jpg");
+  
+ // Create the ball at the centre of the screen
+  leftPlatform = new Platform(100,500,70,10);
+  rightPlatform = new Platform(210,500,70,10);
 }
 
 // draw()
@@ -31,11 +41,13 @@ void setup() {
 // loops forever, makes the cube and platforms move
 
 void draw() {
+ //when state is stateMenu runMenu()
   switch(state) {
   case stateMenu:
     runMenu();
     break;
   }
+ //when state is stateGame runGame()
   switch(state) {
   case stateGame:
     runGame();
@@ -60,6 +72,8 @@ void runMenu() {
 
 void runGame() {
   background(175, 195, 219);
+    leftPlatform.display();
+    rightPlatform.display();
 }
 
 
