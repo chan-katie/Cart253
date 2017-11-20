@@ -7,10 +7,10 @@
 // By: Katie Chan 
 
 // Global variables for the cube and platforms
-//Platform leftPlatform; 
-//Platform rightPlatform; 
+//Cube cube; 
 
 ArrayList<Platform> platforms = new ArrayList();
+
 
 // consts for states  
 final int stateGame=0;
@@ -25,6 +25,9 @@ PImage start;
 int y;
 int spacing=60;
 
+
+int choice;
+
 // setup()
 //
 // Sets the size and creates the cube and platforms
@@ -36,13 +39,19 @@ void setup() {
   //load startscreen image
   start = loadImage("imgs/start.jpg");
 
+ // cube = new Cube(152, 450, left, right);
+ 
+
+
   for (int y=60; y<=550; y+=spacing) {
+    
+    //chose 95 or 210 
+    int choice=random(1)>0.5?95:210;  
+    
     // Create the platforms
-    Platform leftPlatform = new Platform(95, y, 70, 10);
-    Platform rightPlatform = new Platform(210, y, 70, 10);
+    Platform leftPlatform = new Platform(choice, y, 70, 10);
 
     platforms.add(leftPlatform );
-    platforms.add(rightPlatform);
   }
 }
 
@@ -90,10 +99,21 @@ void runGame() {
 }
 
 
-// keyPressed()
-//
-// The cube needs to know if it should move based on a keypress
-// so when the keypress is detected in the main program we need to
-// tell the cube
-void keyPressed() {
-}
+//// keyPressed()
+////
+//// The cube needs to know if it should move based on a keypress
+//// so when the keypress is detected in the main program we need to
+//// tell the cube
+//void keyPressed() {
+
+//  cube.keyPressed();
+//}
+
+//// keyReleased()
+////
+//// As for keyPressed, except for released!
+
+//void keyReleased() {
+
+//  cube.keyReleased();
+//}
