@@ -7,10 +7,10 @@
 // By: Katie Chan 
 
 // Global variables for the cube and platforms
-//Cube cube; 
+Cube cube; 
+Platform Platform;
 
 ArrayList<Platform> platforms = new ArrayList();
-
 
 // consts for states  
 final int stateGame=0;
@@ -22,11 +22,9 @@ int state = stateMenu;
 PImage start;
 
 //platform 
-int y;
+int yPlatform;
+int xPlatform;
 int spacing=60;
-
-
-int choice;
 
 // setup()
 //
@@ -39,19 +37,17 @@ void setup() {
   //load startscreen image
   start = loadImage("imgs/start.jpg");
 
- // cube = new Cube(152, 450, left, right);
- 
+  cube = new Cube(205, 600);
 
+  for (int yPlatform=560; yPlatform>0; yPlatform-=spacing) {
 
-  for (int y=60; y<=550; y+=spacing) {
-    
     //chose 95 or 210 
-    int choice=random(1)>0.5?95:210;  
-    
-    // Create the platforms
-    Platform leftPlatform = new Platform(choice, y, 70, 10);
+    int xPlatform=random(1)>0.5?140:255;  
 
-    platforms.add(leftPlatform );
+    // Create the platforms
+    Platform platform = new Platform(xPlatform, yPlatform, 70, 10);
+
+    platforms.add(platform );
   }
 }
 
@@ -60,30 +56,34 @@ void setup() {
 // loops forever, makes the cube and platforms move
 
 void draw() {
-  //when state is stateMenu runMenu()
-  switch(state) {
-  case stateMenu:
-    runMenu();
-    break;
-  }
-  //when state is stateGame runGame()
-  switch(state) {
-  case stateGame:
-    runGame();
-    break;
-  }
+  runGame();
+  ////
+  ////when state is stateMenu runMenu()
+  //  switch(state) {
+  //  case stateMenu:
+  //    runMenu();
+
+  //  }
+  //  //when state is stateGame runGame()
+  //  switch(state) {
+  //  case stateGame:
+  //    runGame();
+
+  //  }
+  //}
+
+  // //runMenu()
+  //// 
+  ////show menu here
+
+  //void runMenu() {
+  //  background(start);
+  //  if (key==' ') {
+  //    runGame();
+  //  }
 }
 
-// runMenu()
-//
-//show menu here
 
-void runMenu() {
-  background(start);
-  if (key==' ') {
-    runGame();
-  }
-}
 
 // runGame()
 //
@@ -96,24 +96,29 @@ void runGame() {
   for (Platform p1 : platforms) {
     p1.display();
   }
+
+  cube.display();
+  cube.update();
+
+  //cube.collide(platform);
 }
 
 
-//// keyPressed()
-////
-//// The cube needs to know if it should move based on a keypress
-//// so when the keypress is detected in the main program we need to
-//// tell the cube
-//void keyPressed() {
+// keyPressed()
+//
+// The cube needs to know if it should move based on a keypress
+// so when the keypress is detected in the main program we need to
+// tell the cube
+void keyPressed() {
 
-//  cube.keyPressed();
-//}
+  cube.keyPressed();
+}
 
-//// keyReleased()
-////
-//// As for keyPressed, except for released!
+// keyReleased()
+//
+// As for keyPressed, except for released!
 
-//void keyReleased() {
+void keyReleased() {
 
-//  cube.keyReleased();
-//}
+  cube.keyReleased();
+}
