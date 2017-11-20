@@ -8,9 +8,8 @@
 
 // Global variables for the cube and platforms
 Cube cube; 
-Platform Platform;
 
-ArrayList<Platform> platforms = new ArrayList();
+ArrayList<Platform> platforms = new ArrayList<Platform>();
 
 // consts for states  
 final int stateGame=0;
@@ -44,10 +43,7 @@ void setup() {
     //chose 95 or 210 
     int xPlatform=random(1)>0.5?140:255;  
 
-    // Create the platforms
-    Platform platform = new Platform(xPlatform, yPlatform, 70, 10);
-
-    platforms.add(platform );
+    platforms.add(new Platform(xPlatform, yPlatform, 70, 10));
   }
 }
 
@@ -95,12 +91,16 @@ void runGame() {
   //for
   for (Platform p1 : platforms) {
     p1.display();
+    
+    cube.checkHit(p1);
   }
 
   cube.display();
   cube.update();
+  //cube.collide();
 
-  //cube.collide(platform);
+
+  
 }
 
 
@@ -120,5 +120,5 @@ void keyPressed() {
 
 void keyReleased() {
 
-  cube.keyReleased();
+  //cube.keyReleased();
 }

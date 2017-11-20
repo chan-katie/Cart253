@@ -2,11 +2,11 @@ class Platform {
 
   /////////////// Properties ///////////////
 
-  int obstacleWidth;
-  int obstacleHeight;
+  int platformW;
+  int platformH;
 
   // The location of the platform
-  float x;
+  int x;
   int y;
 
   // The fill of the platform
@@ -15,11 +15,11 @@ class Platform {
   /////////////// Constructor ///////////////
 
 
-  Platform(float _x, int _y, int _w, int _h) {
+  Platform(int _x, int _y, int _w, int _h) {
     x = _x;
     y = _y;
-    obstacleWidth= _w;
-    obstacleHeight = _h;
+    platformW= _w;
+    platformH = _h;
   }
 
 
@@ -34,6 +34,6 @@ class Platform {
     fill(platformFill);
     rectMode(CENTER);
     // Draw the image platforms
-    rect(x, y, obstacleWidth, obstacleHeight);
+    rect(x, y, platformW,platformH);
   }
 }
