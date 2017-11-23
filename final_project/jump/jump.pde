@@ -38,6 +38,8 @@ void setup() {
 
   cube = new Cube(205, 600);
 
+  platforms.add(new Platform( 205, 620, 70, 10));
+
   for (int yPlatform=560; yPlatform>0; yPlatform-=spacing) {
 
     //chose 95 or 210 
@@ -91,16 +93,11 @@ void runGame() {
   //for
   for (Platform p1 : platforms) {
     p1.display();
-    
-    cube.checkHit(p1);
   }
-
+  cube.checkHit(platforms); 
   cube.display();
   cube.update();
   //cube.collide();
-
-
-  
 }
 
 
