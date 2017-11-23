@@ -8,6 +8,8 @@ class Platform {
   // The location of the platform
   int x;
   int y;
+  
+  int gridY;
 
   // The fill of the platform
   color platformFill = color(34, 53, 66);

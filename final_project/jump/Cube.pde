@@ -46,7 +46,8 @@ class Cube {
     //going through each platform and checking for a collison
     
     for (Platform p1 : platforms) {
-      println("cube "+x+","+y+"  plat1 "+p1.x+","+p1.y+" "+dist(x, y, p1.x, p1.y));
+      
+     // println("cube "+x+","+y+"  plat1 "+p1.x+","+p1.y+" "+dist(x, y, p1.x, p1.y));
 
   //if the cube and platform touch 
       if ((dist(x, y, p1.x, p1.y) <= SIZE/2 + p1.platformH/2 ) ) {
@@ -72,7 +73,7 @@ class Cube {
     // Draw the image platforms
     image(cubeFill, x, y, WIDTH, HEIGHT);
 
-    println(y);
+
   }
 
 
