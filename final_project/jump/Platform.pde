@@ -7,7 +7,7 @@ class Platform {
 
   // The location of the platform
   int x;
-  int y;
+  int y=0;
   
   int gridY;
 
@@ -17,9 +17,8 @@ class Platform {
   /////////////// Constructor ///////////////
 
 
-  Platform(int _x, int _y, int _w, int _h) {
+  Platform(int _x, int _w, int _h) {
     x = _x;
-    y = _y;
     platformW= _w;
     platformH = _h;
   }
@@ -27,11 +26,11 @@ class Platform {
 
   /////////////// Methods ////////////////
 
-  void update() {
-  }
-
+  // display()
+  //
+  // Draw the plaforms at there positions
   void display() {
-    // Set up the appearance of the ball (no stroke, a fill, and imageMode as CENTER)
+    // Set up the appearance of the platforms
     noStroke();
     fill(platformFill);
     rectMode(CENTER);
