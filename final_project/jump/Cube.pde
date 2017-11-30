@@ -21,8 +21,10 @@ class Cube {
   // The fail game screen
   PImage failFill=loadImage("imgs/end.jpg");
 
+PFont Roboto = loadFont("Roboto-Light-20.vlw");
 
   String str1 = "Score:";
+  char restart='r';
 
 
   /////////////// Constructor ///////////////
@@ -60,6 +62,8 @@ class Cube {
     //if does not touch move back to starting point 
     if (!platformHit) {
       runFail();
+     
+      
     }
   }
   
@@ -90,17 +94,17 @@ class Cube {
   void runFail() {
     x=800;
     y=0;
-    textSize(15); 
+    textFont(Roboto); 
     textAlign(CENTER);
     background(failFill);
     text(str1, 187.5, 400);
-  }
-
+}
 
   // keyPressed()
   //
   // Called when keyPressed is called in the main program
   void keyPressed() {
+    
     // Check if the key is our left key
     if (keyCode== LEFT) {
       // If so we want a positive y velocity
@@ -114,9 +118,6 @@ class Cube {
       x=255;
       gridY-=1;
     }
-    //if press r the game restarts
-    if (key=='r') {
-      reset();
-    };
+
   }
 }

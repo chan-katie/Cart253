@@ -11,10 +11,8 @@ Cube cube;
 
 ArrayList<Platform> platforms = new ArrayList<Platform>();
 
-// consts for states  
-final int stateMenu=0;
-final int stateGame=1;
-int state;
+// state  
+int screen = 0;
 
 // start screen
 PImage start;
@@ -39,6 +37,9 @@ int scrollPos = 1;
 void setup() {
   //set the size 
   size(375, 665);
+  //load startscreen image
+  start = loadImage("imgs/start.jpg");
+
   reset();
 }
 
@@ -48,9 +49,6 @@ void setup() {
 // call this to reset the game 
 
 void reset() {
-
-  //load startscreen image
-  start = loadImage("imgs/start.jpg");
 
   //the middle of the screen
   halfScreen = height / GRID_SIZE / 2;
@@ -79,13 +77,19 @@ void reset() {
 
 void draw() {
 
-  switch(state) {
-  case 0: // menu
+  if (screen == 0) {
+    // menu
     runMenu();
-    break;
-  case 1: // playing game
+  }
+
+  if (screen == 1) {
+    //run
     runGame();
-    break;
+  }
+
+  if (screen == 2) {
+    //restart
+    cube.runFail();
   }
 }
 
@@ -104,7 +108,7 @@ void runMenu() {
 void runGame() {
   background(175, 195, 219);
 
-//for
+  //for
   //looping through a segment of the array and adjusting the Y of the platforms 
   for (int i = currentPos - halfScreen, j = 0; i < currentPos + halfScreen; i++, j++) {
     int index = i;
@@ -143,10 +147,10 @@ void runGame() {
       currentPos=numberOfPlatforms + currentPos;
     }// End
   }
-  
+
   //check if platform and cube hit
   cube.checkHit(platforms); 
-  
+
   //display cube
   cube.display();
 }
@@ -159,15 +163,17 @@ void runGame() {
 // tell the cube
 void keyPressed() {
 
-  switch(state) {
-  case 0: // menu
-    if ( key == ' ') {
-      state = 1;
-    }
-    break;
-  case 1: // playing game
-    // ...
-    break;
+
+
+  if ((screen==0) && (key==' ')) {
+    screen = 1;
   }
-  cube.keyPressed();
+
+  if (screen==1) {
+    cube.keyPressed();
+  }
+
+  if ((screen==1) && (key=='r')) {
+    reset();
+  }
 }
