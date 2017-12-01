@@ -17,17 +17,7 @@ class Cube {
   // The fill of the cube
   PImage cubeFill=loadImage("imgs/cube.jpg");
 
-
-  // The fail game screen
-  PImage failFill=loadImage("imgs/end.jpg");
-
-PFont Roboto = loadFont("Roboto-Light-20.vlw");
-
-  String str1 = "Score:";
-  char restart='r';
-
-
-  /////////////// Constructor ///////////////
+ /////////////// Constructor ///////////////
 
 
   Cube( int _x, int _y) {
@@ -56,14 +46,16 @@ PFont Roboto = loadFont("Roboto-Light-20.vlw");
       //if the cube and platform touch 
       if ((dist(x, y, p1.x, p1.y) <= SIZE/2 + p1.platformH/2 ) ) {
         platformHit=true; 
+        
+        println(score);
         break;
       }
     }
     //if does not touch move back to starting point 
-    if (!platformHit) {
+    if (!platformHit && screen==1) {
       runFail();
-     
-      
+      //pause the game 
+      noLoop();
     }
   }
   
@@ -88,17 +80,7 @@ PFont Roboto = loadFont("Roboto-Light-20.vlw");
   }
 
 
-  //runFail()
-  //
-  // Failed gamescreen, called when you loose the game
-  void runFail() {
-    x=800;
-    y=0;
-    textFont(Roboto); 
-    textAlign(CENTER);
-    background(failFill);
-    text(str1, 187.5, 400);
-}
+
 
   // keyPressed()
   //
@@ -111,12 +93,14 @@ PFont Roboto = loadFont("Roboto-Light-20.vlw");
       //jump to the left
       x=140;
       gridY-=1;
+   
     } // Otherwise check if the key is our right key 
     else if (keyCode == RIGHT) {
       // If so we want a negative y velocity
       //jump to the right
       x=255;
       gridY-=1;
+     
     }
 
   }

@@ -14,8 +14,12 @@ ArrayList<Platform> platforms = new ArrayList<Platform>();
 // state  
 int screen = 0;
 
-// start screen
+//screens
 PImage start;
+PImage failFill;
+
+// font
+PFont Roboto;
 
 //platforms
 int yPlatform;
@@ -29,6 +33,8 @@ int halfScreen;
 int currentPos;
 int scrollPos = 1;
 
+String str1 = "Score: ";
+int score=-1;
 
 // setup()
 //
@@ -49,6 +55,7 @@ void setup() {
 // call this to reset the game 
 
 void reset() {
+ 
 
   //the middle of the screen
   halfScreen = height / GRID_SIZE / 2;
@@ -79,34 +86,31 @@ void draw() {
 
   if (screen == 0) {
     // menu
-    runMenu();
+    background(start);
   }
 
   if (screen == 1) {
     //run
     runGame();
   }
-
-  if (screen == 2) {
-    //restart
-    cube.runFail();
-  }
 }
 
-//runMenu()
-// 
-//show menu here
-
-void runMenu() {
-  background(start);
-}
 
 // runGame()
 //
 //show game here
 
 void runGame() {
-  background(175, 195, 219);
+     background(175, 195, 219);
+     
+     
+    //setting roboto font 
+    Roboto = loadFont("Roboto-Light-20.vlw");
+    textFont(Roboto);
+    
+    
+    
+    text(str1+score, 10, 30);
 
   //for
   //looping through a segment of the array and adjusting the Y of the platforms 
@@ -156,6 +160,27 @@ void runGame() {
 }
 
 
+//runFail()
+//
+// Failed gamescreen, called when you loose the game
+void runFail() {
+
+  // The fail game screen and roboto font;
+  failFill=loadImage("imgs/end.jpg");
+  Roboto = loadFont("Roboto-Light-20.vlw");
+
+  cube.x=-900;
+  cube.y=-900;
+  
+  score=score-1;
+
+  textFont(Roboto); 
+  textAlign(CENTER);
+  background(failFill);
+  text(str1+score, 187.5, 400);
+}
+
+
 // keyPressed()
 //
 // The cube needs to know if it should move based on a keypress
@@ -163,17 +188,24 @@ void runGame() {
 // tell the cube
 void keyPressed() {
 
-
-
+  //start game when press spacebar
   if ((screen==0) && (key==' ')) {
     screen = 1;
   }
 
+  //control cube with keypressed in game screen 
   if (screen==1) {
+
     cube.keyPressed();
+    score++;
   }
 
-  if ((screen==1) && (key=='r')) {
+  //press r to reset the game 
+  if (key=='r') {
+    screen=1;
+    //reset the game 
     reset();
+    score=0;
+    loop();
   }
 }
