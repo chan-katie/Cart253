@@ -52,8 +52,12 @@ class Cube {
       }
     }
     //if does not touch move back to starting point 
-    if (!platformHit && screen==1) {
-      runFail();
+    if (!platformHit && screen==1){
+      
+
+       score--;
+
+       runFail();
       //pause the game 
       noLoop();
     }

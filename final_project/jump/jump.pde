@@ -34,7 +34,10 @@ int currentPos;
 int scrollPos = 1;
 
 String str1 = "Score: ";
-int score=-1;
+int score=0;
+
+
+
 
 // setup()
 //
@@ -55,8 +58,8 @@ void setup() {
 // call this to reset the game 
 
 void reset() {
- 
 
+  score=0;
   //the middle of the screen
   halfScreen = height / GRID_SIZE / 2;
 
@@ -83,9 +86,13 @@ void reset() {
 // loops forever, makes the cube and platforms move
 
 void draw() {
+  
+  //setting the background  
+   background(175, 195, 219);
 
   if (screen == 0) {
     // menu
+
     background(start);
   }
 
@@ -101,16 +108,12 @@ void draw() {
 //show game here
 
 void runGame() {
-     background(175, 195, 219);
-     
-     
-    //setting roboto font 
-    Roboto = loadFont("Roboto-Light-20.vlw");
-    textFont(Roboto);
-    
-    
-    
-    text(str1+score, 10, 30);
+ 
+  //setting roboto font 
+  Roboto = loadFont("Roboto-Light-20.vlw");
+  textFont(Roboto);
+
+  text(str1+score, 10, 30) ;
 
   //for
   //looping through a segment of the array and adjusting the Y of the platforms 
@@ -171,13 +174,11 @@ void runFail() {
 
   cube.x=-900;
   cube.y=-900;
-  
-  score=score-1;
 
   textFont(Roboto); 
   textAlign(CENTER);
   background(failFill);
-  text(str1+score, 187.5, 400);
+  text(str1+(score), 187.5, 400);
 }
 
 
@@ -197,15 +198,17 @@ void keyPressed() {
   if (screen==1) {
 
     cube.keyPressed();
-    score++;
+    if ((cube.y > halfScreen*2-1)) {
+      score++;
+    }
   }
+
 
   //press r to reset the game 
   if (key=='r') {
     screen=1;
     //reset the game 
     reset();
-    score=0;
     loop();
   }
 }
