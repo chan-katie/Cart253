@@ -17,7 +17,7 @@ class Cube {
   // The fill of the cube
   PImage cubeFill=loadImage("imgs/cube.jpg");
 
- /////////////// Constructor ///////////////
+  /////////////// Constructor ///////////////
 
 
   Cube( int _x, int _y) {
@@ -46,23 +46,21 @@ class Cube {
       //if the cube and platform touch 
       if ((dist(x, y, p1.x, p1.y) <= SIZE/2 + p1.platformH/2 ) ) {
         platformHit=true; 
-        
-        println(score);
         break;
       }
     }
     //if does not touch move back to starting point 
-    if (!platformHit && screen==1){
-      
+    if (!platformHit) {
 
-       score--;
+      //minus 1 cause the last wrong jump isnt included
+      score--;
 
-       runFail();
+      runFail();
       //pause the game 
       noLoop();
     }
   }
-  
+
   //updateY()
   //
   //update the y position of the cube based on scrolling background
@@ -84,28 +82,23 @@ class Cube {
   }
 
 
-
-
   // keyPressed()
   //
   // Called when keyPressed is called in the main program
   void keyPressed() {
-    
+
     // Check if the key is our left key
     if (keyCode== LEFT) {
       // If so we want a positive y velocity
       //jump to the left
       x=140;
       gridY-=1;
-   
     } // Otherwise check if the key is our right key 
     else if (keyCode == RIGHT) {
       // If so we want a negative y velocity
       //jump to the right
       x=255;
       gridY-=1;
-     
     }
-
   }
 }

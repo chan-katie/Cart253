@@ -8,7 +8,7 @@ class Platform {
   // The location of the platform
   int x;
   int y=0;
-  
+
   int gridY;
 
   // The fill of the platform
@@ -35,6 +35,6 @@ class Platform {
     fill(platformFill);
     rectMode(CENTER);
     // Draw the image platforms
-    rect(x, y, platformW,platformH);
+    rect(x, y, platformW, platformH);
   }
 }

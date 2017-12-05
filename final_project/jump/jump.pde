@@ -25,29 +25,31 @@ PFont Roboto;
 int yPlatform;
 int xPlatform;
 int spacing=60;
-int numberOfPlatforms =20;
+int numberOfPlatforms;
+
+//platform spacing
+final int GRID_SIZE = 60;
 
 //scrolling background 
-final int GRID_SIZE = 60;
 int halfScreen;
 int currentPos;
 int scrollPos = 1;
 
-String str1 = "Score: ";
-int score=0;
-
-
-
+int score;
 
 // setup()
 //
 // Sets the size and creates the cube and platforms
 
 void setup() {
-  //set the size 
-  size(375, 665);
+
   //load startscreen image
   start = loadImage("imgs/start.jpg");
+
+  failFill=loadImage("imgs/end.jpg");
+
+  //set the size 
+  size(375, 665);
 
   reset();
 }
@@ -59,18 +61,23 @@ void setup() {
 
 void reset() {
 
+  println(xPlatform);
+
+  numberOfPlatforms=100;
+
   score=0;
+
   //the middle of the screen
   halfScreen = height / GRID_SIZE / 2;
 
   //where you are in the array
   currentPos = numberOfPlatforms-halfScreen;
 
-
-  //for making 200 platforms 
+  //for making platforms 
   for (int i=0; i<numberOfPlatforms; i++) {
 
-    //chose 95 or 210 
+    loop();
+    //chose 140 or 255 for platform position 
     int xPlatform=random(1)>0.5?140:255; 
 
     //add all platforms 
@@ -86,13 +93,9 @@ void reset() {
 // loops forever, makes the cube and platforms move
 
 void draw() {
-  
-  //setting the background  
-   background(175, 195, 219);
 
   if (screen == 0) {
     // menu
-
     background(start);
   }
 
@@ -102,18 +105,20 @@ void draw() {
   }
 }
 
-
 // runGame()
 //
 //show game here
 
 void runGame() {
- 
-  //setting roboto font 
+
+  //setting the background  
+  background(175, 195, 219);
+
+  //setting roboto font and text alignment
   Roboto = loadFont("Roboto-Light-20.vlw");
   textFont(Roboto);
-
-  text(str1+score, 10, 30) ;
+  textAlign(LEFT, CENTER);
+  text("Score: "+score, 10, 20) ;
 
   //for
   //looping through a segment of the array and adjusting the Y of the platforms 
@@ -169,16 +174,18 @@ void runGame() {
 void runFail() {
 
   // The fail game screen and roboto font;
-  failFill=loadImage("imgs/end.jpg");
+
   Roboto = loadFont("Roboto-Light-20.vlw");
 
   cube.x=-900;
   cube.y=-900;
 
+  //align the text 
   textFont(Roboto); 
-  textAlign(CENTER);
+  textAlign(CENTER, CENTER);
   background(failFill);
-  text(str1+(score), 187.5, 400);
+
+  text("Score: "+score, 187.5, 400);
 }
 
 
@@ -203,11 +210,10 @@ void keyPressed() {
     }
   }
 
-
   //press r to reset the game 
   if (key=='r') {
-    screen=1;
     //reset the game 
+    screen=1;
     reset();
     loop();
   }
