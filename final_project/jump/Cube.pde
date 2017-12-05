@@ -25,9 +25,7 @@ class Cube {
     gridY = _y;
   }
 
-
   /////////////// Methods ////////////////
-
 
   //checkHit();
   //

@@ -117,6 +117,7 @@ void runGame() {
   //setting roboto font and text alignment
   Roboto = loadFont("Roboto-Light-20.vlw");
   textFont(Roboto);
+  fill(34,53,66);
   textAlign(LEFT, CENTER);
   text("Score: "+score, 10, 20) ;
 
@@ -184,6 +185,7 @@ void runFail() {
   textFont(Roboto); 
   textAlign(CENTER, CENTER);
   background(failFill);
+  fill(34,53,66);
 
   text("Score: "+score, 187.5, 400);
 }

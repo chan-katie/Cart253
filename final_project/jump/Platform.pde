@@ -8,11 +8,19 @@ class Platform {
   // The location of the platform
   int x;
   int y=0;
+  //// The fill of the platform
 
-  int gridY;
+  // create a random value for R, G, and B
+  color r1 = color(random(255), random(255), random(255));
 
-  // The fill of the platform
-  color platformFill = color(34, 53, 66);
+  // randomly pick a color among the 3 options
+  int selected = (int)random(0, 3);
+  int choicesR[] = {34, 242, 146};
+  int choicesG[] = {53, 110, 183};
+  int choicesB[] = {66, 86, 220};
+
+  color platformFill = color(choicesR[selected], choicesG[selected], choicesB[selected]);
+
 
   /////////////// Constructor ///////////////
 
@@ -23,8 +31,7 @@ class Platform {
     platformH = _h;
   }
 
-
-  /////////////// Methods ////////////////
+/////////////// Methods ////////////////
 
   // display()
   //
@@ -34,6 +41,7 @@ class Platform {
     noStroke();
     fill(platformFill);
     rectMode(CENTER);
+   
     // Draw the image platforms
     rect(x, y, platformW, platformH);
   }
