@@ -59,10 +59,7 @@ void setup() {
   minim = new Minim(this); // Make the Minim manager class into an object
   beats = minim.loadFile("data/POL-chubby-cat-short.wav", 1024);
 
-  beats.play();
 
-  //loop the music once it stops 
-  beats.loop(); 
 
   //set the frameRate
   frameRate(80);
@@ -125,6 +122,7 @@ void draw() {
 
     //display sound
     sound.display();
+ 
   }
 
   if (screen == 1) {
@@ -254,4 +252,10 @@ void keyPressed() {
     frameRate(80);
     loop();
   }
+}
+
+void mouseClicked(){
+  
+sound.mouseClicked();
+
 }

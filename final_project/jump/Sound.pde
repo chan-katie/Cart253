@@ -12,6 +12,10 @@ class Sound {
 
   // The fill of the ball
   PImage soundFill;
+  PImage muteFill;
+
+
+  boolean onOff = false;
   /////////////// Constructor ///////////////
 
 
@@ -24,11 +28,8 @@ class Sound {
 
   /////////////// Methods ////////////////
 
-  // update()
-  //
-  // update when you click it 
-  update() {
-  }
+
+
   // display()
   //
   // Draw the sound at its position
@@ -40,7 +41,26 @@ class Sound {
     noStroke();
     imageMode(CENTER);
 
-    // Draw the sound
-    image(soundFill, x, y, w, h);
+
+    soundFill= loadImage("imgs/play.png");
+    muteFill= loadImage("imgs/mute.png");
+
+    if (onOff == true) {
+      image(muteFill, x, y, w, h);
+      beats.pause();
+    } else {
+
+      image(soundFill, x, y, w, h);
+      beats.play();
+
+      //loop the music once it stops 
+    beats.loop();
+    }
+  }
+
+
+  void mouseClicked() {
+    onOff= !onOff ;// this switches it to the opposite state
+    println(onOff); // just to check...
   }
 }
