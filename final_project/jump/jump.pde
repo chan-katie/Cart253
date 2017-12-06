@@ -16,7 +16,7 @@ BeatDetect music = new BeatDetect();
 
 // Global variables for the cube and platforms
 Cube cube; 
-
+Sound sound;
 ArrayList<Platform> platforms = new ArrayList<Platform>();
 
 // state  
@@ -52,17 +52,17 @@ int score;
 
 void setup() {
 
-   //set the size 
+  //set the size 
   size(375, 665);
-  
-      //  load the music 
+
+  //  load the music 
   minim = new Minim(this); // Make the Minim manager class into an object
   beats = minim.loadFile("data/POL-chubby-cat-short.wav", 1024);
- 
-   beats.play();
-   
-   //loop the music once it stops 
-    beats.loop(); 
+
+  beats.play();
+
+  //loop the music once it stops 
+  beats.loop(); 
 
   //set the frameRate
   frameRate(80);
@@ -106,21 +106,30 @@ void reset() {
 
   //adding the cube
   cube = new Cube(platforms.get(platforms.size()-1).x, halfScreen*2-1);
+
+  sound = new Sound(20, 645, 30, 25);
 }
+
 
 // draw()
 //
 // loops forever, makes the cube and platforms move
 
 void draw() {
- 
-if (screen == 0) {
+
+
+
+  if (screen == 0) {
     // menu
     background(start);
+
+    //display sound
+    sound.display();
   }
 
   if (screen == 1) {
     //run
+
     runGame();
   }
 }
@@ -133,6 +142,8 @@ void runGame() {
 
   //setting the background  
   background(175, 195, 219);
+
+  sound.display();
 
   //setting roboto font and text alignment
   Roboto = loadFont("Roboto-Light-20.vlw");
