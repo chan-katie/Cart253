@@ -46,12 +46,18 @@ class Cube {
 
         println(frameRate);
 
-        //changing the speed of the game to make it harder in increments of 10 
+        //changing the speed of the game to make it harder 
         if (score==10) {
           frameRate(100);
         }
+       if (score==15) {
+          frameRate(135);
+        }
         if (score==20) {
           frameRate(150);
+        }
+         if (score==25) {
+          frameRate(175);
         }
         if (score==30) {
           frameRate(200);
@@ -62,10 +68,10 @@ class Cube {
         if (score==50) {
           frameRate(300);
         }
-        if (score==60) {
+        if (score==80) {
           frameRate(350);
         }
-        if (score==70) {
+        if (score==100) {
           frameRate(400);
         }
 

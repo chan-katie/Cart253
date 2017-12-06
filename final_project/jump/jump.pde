@@ -52,9 +52,17 @@ int score;
 
 void setup() {
 
-
-  //set the size 
+   //set the size 
   size(375, 665);
+  
+      //  load the music 
+  minim = new Minim(this); // Make the Minim manager class into an object
+  beats = minim.loadFile("data/POL-chubby-cat-short.wav", 1024);
+ 
+   beats.play();
+   
+   //loop the music once it stops 
+    beats.loop(); 
 
   //set the frameRate
   frameRate(80);
@@ -73,17 +81,9 @@ void setup() {
 // call this to reset the game 
 
 void reset() {
-  
-    //  load the music 
-  minim = new Minim(this); // Make the Minim manager class into an object
-  beats = minim.loadFile("data/POL-chubby-cat-short.wav", 1024);
-
- 
- beats.play();
-
   println(xPlatform);
 
-  numberOfPlatforms=10;
+  numberOfPlatforms=50;
 
   score=0;
 
@@ -113,11 +113,8 @@ void reset() {
 // loops forever, makes the cube and platforms move
 
 void draw() {
-  
-  music.detect( beats.right );
-  
-
-  if (screen == 0) {
+ 
+if (screen == 0) {
     // menu
     background(start);
   }
@@ -220,6 +217,9 @@ void runFail() {
 // so when the keypress is detected in the main program we need to
 // tell the cube
 void keyPressed() {
+  if ( (key=='m')) {
+    beats.pause();
+  }
 
   //start game when press spacebar
   if ((screen==0) && (key==' ')) {
