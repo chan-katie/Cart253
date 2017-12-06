@@ -43,6 +43,32 @@ class Cube {
       //if the cube and platform touch 
       if ((dist(x, y, p1.x, p1.y) <= SIZE/2 + p1.platformH/2 ) ) {
         platformHit=true; 
+
+        println(frameRate);
+
+        //changing the speed of the game to make it harder in increments of 10 
+        if (score==10) {
+          frameRate(100);
+        }
+        if (score==20) {
+          frameRate(150);
+        }
+        if (score==30) {
+          frameRate(200);
+        }
+        if (score==40) {
+          frameRate(250);
+        }
+        if (score==50) {
+          frameRate(300);
+        }
+        if (score==60) {
+          frameRate(350);
+        }
+        if (score==70) {
+          frameRate(400);
+        }
+
         break;
       }
     }
@@ -50,12 +76,14 @@ class Cube {
     if (!platformHit) {
 
       //minus 1 cause the last wrong jump isnt included
-score--;
-      if(score==-1){
-  score=0;}
-  
-        if((score==0)){
-  score=0;}
+      score--;
+      if (score==-1) {
+        score=0;
+      }
+
+      if ((score==0)) {
+        score=0;
+      }
       runFail();
       //pause the game 
       noLoop();

@@ -34,7 +34,7 @@ final int GRID_SIZE=60;
 int halfScreen;
 int currentPos;
 int scrollPos;
-int speed=5;
+int speed=60;
 
 int score;
 
@@ -44,15 +44,17 @@ int score;
 
 void setup() {
 
+
+  //set the size 
+  size(375, 665);
+
+  //set the frameRate
+  frameRate(80);
+
   //load startscreen image
   start = loadImage("imgs/start.jpg");
 
   failFill=loadImage("imgs/end.jpg");
-  
-  
-
-  //set the size 
-  size(375, 665);
 
   reset();
 }
@@ -120,7 +122,7 @@ void runGame() {
   //setting roboto font and text alignment
   Roboto = loadFont("Roboto-Light-20.vlw");
   textFont(Roboto);
-  fill(34,53,66);
+  fill(34, 53, 66);
   textAlign(LEFT, CENTER);
   text("Score: "+score, 10, 20) ;
 
@@ -141,7 +143,7 @@ void runGame() {
   //update cube position, making it move
   cube.updateY(scrollPos, GRID_SIZE);
 
- //increment by 1 
+  //increment by 1 
   scrollPos++;
 
 
@@ -149,7 +151,7 @@ void runGame() {
   //if scrollPos is equal to the GRID_SIZE currentPos is negative making it go up 
   if (scrollPos == GRID_SIZE) {
 
-    
+
     cube.gridY++;
 
     currentPos--;
@@ -188,13 +190,9 @@ void runFail() {
   textFont(Roboto); 
   textAlign(CENTER, CENTER);
   background(failFill);
-  fill(34,53,66);
-  
+  fill(34, 53, 66);
+
   text("Score: "+(score), 187.5, 400);
-  
-
-  
-
 }
 
 
@@ -224,6 +222,7 @@ void keyPressed() {
     //reset the game 
     screen=1;
     reset();
+    frameRate(80);
     loop();
   }
 }
