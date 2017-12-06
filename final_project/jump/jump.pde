@@ -6,6 +6,14 @@
 //
 // By: Katie Chan 
 
+
+import ddf.minim.analysis.*;
+import ddf.minim.*;
+
+Minim minim; // Minim has a special class to handle sound tasks
+AudioPlayer beats;
+BeatDetect music = new BeatDetect();
+
 // Global variables for the cube and platforms
 Cube cube; 
 
@@ -65,6 +73,13 @@ void setup() {
 // call this to reset the game 
 
 void reset() {
+  
+    //  load the music 
+  minim = new Minim(this); // Make the Minim manager class into an object
+  beats = minim.loadFile("data/POL-chubby-cat-short.wav", 1024);
+
+ 
+ beats.play();
 
   println(xPlatform);
 
@@ -98,6 +113,9 @@ void reset() {
 // loops forever, makes the cube and platforms move
 
 void draw() {
+  
+  music.detect( beats.right );
+  
 
   if (screen == 0) {
     // menu
