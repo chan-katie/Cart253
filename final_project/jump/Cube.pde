@@ -2,8 +2,7 @@ class Cube {
 
   /////////////// Properties ///////////////
 
-  // Default values for speed and size
-  int SPEED=5;
+  // Default values for size
   int HEIGHT=30;
   int WIDTH=30;
   int SIZE=30;
@@ -51,8 +50,12 @@ class Cube {
     if (!platformHit) {
 
       //minus 1 cause the last wrong jump isnt included
-      score--;
-
+score--;
+      if(score==-1){
+  score=0;}
+  
+        if((score==0)){
+  score=0;}
       runFail();
       //pause the game 
       noLoop();

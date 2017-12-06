@@ -28,12 +28,13 @@ int spacing=60;
 int numberOfPlatforms;
 
 //platform spacing
-final int GRID_SIZE = 60;
+final int GRID_SIZE=60;
 
 //scrolling background 
 int halfScreen;
 int currentPos;
-int scrollPos = 1;
+int scrollPos;
+int speed=5;
 
 int score;
 
@@ -47,6 +48,8 @@ void setup() {
   start = loadImage("imgs/start.jpg");
 
   failFill=loadImage("imgs/end.jpg");
+  
+  
 
   //set the size 
   size(375, 665);
@@ -63,7 +66,7 @@ void reset() {
 
   println(xPlatform);
 
-  numberOfPlatforms=100;
+  numberOfPlatforms=10;
 
   score=0;
 
@@ -125,21 +128,20 @@ void runGame() {
   //looping through a segment of the array and adjusting the Y of the platforms 
   for (int i = currentPos - halfScreen, j = 0; i < currentPos + halfScreen; i++, j++) {
     int index = i;
-    // adding 
+    // adding platforms again once it goes through the array
     if (i<0) {
-      index = numberOfPlatforms +i;
+      index = numberOfPlatforms+i;
     }
     //setting the y by offsetting it by the scroll position and display. 
     //If it is above it bring it down, if its below bring it up
-    platforms.get(index%numberOfPlatforms).y=scrollPos + (j) * GRID_SIZE;
+    platforms.get(index%numberOfPlatforms).y=(scrollPos+ 5 + (j) * GRID_SIZE);
     platforms.get(index%numberOfPlatforms).display();
   }
 
-  //update cube position 
+  //update cube position, making it move
   cube.updateY(scrollPos, GRID_SIZE);
 
-
-  //increment by 1 
+ //increment by 1 
   scrollPos++;
 
 
@@ -147,11 +149,12 @@ void runGame() {
   //if scrollPos is equal to the GRID_SIZE currentPos is negative making it go up 
   if (scrollPos == GRID_SIZE) {
 
+    
     cube.gridY++;
 
     currentPos--;
 
-    //setting it back to 1 
+    //setting it back to 1 to reloop again from the start 
     scrollPos = 1;
 
     //if statement
@@ -186,8 +189,12 @@ void runFail() {
   textAlign(CENTER, CENTER);
   background(failFill);
   fill(34,53,66);
+  
+  text("Score: "+(score), 187.5, 400);
+  
 
-  text("Score: "+score, 187.5, 400);
+  
+
 }
 
 
