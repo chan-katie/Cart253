@@ -44,7 +44,10 @@ int currentPos;
 int scrollPos;
 int speed=60;
 
+
+//scores
 int score;
+int highScore;
 
 // setup()
 //
@@ -66,6 +69,10 @@ void setup() {
   start = loadImage("imgs/start.jpg");
 
   failFill=loadImage("imgs/end.jpg");
+  
+  //play and loop the beat
+  beats.play();
+  beats.loop();
 
   reset();
 }
@@ -83,10 +90,6 @@ void reset() {
   //score starts at 0
   score=0;
 
-  //play and loop the beat
-  beats.play();
-  beats.loop();
-  
   //modified scrolling background code from PhiLho 
 
   //the middle of the screen
@@ -94,8 +97,8 @@ void reset() {
 
   //where you are in the array
   currentPos = numberOfPlatforms-halfScreen;
-  
- //end modified scrolling background code from PhiLho
+
+  //end modified scrolling background code from PhiLho
 
   //for making platforms 
   for (int i=0; i<numberOfPlatforms; i++) {
@@ -131,10 +134,10 @@ void draw() {
 
   if (screen == 1) {
     //run
-
     runGame();
   }
 }
+
 
 // runGame()
 //
@@ -145,17 +148,14 @@ void runGame() {
   //setting the background  
   background(175, 195, 219);
 
-  //display sound
-  //  sound.display();
-
   //setting roboto font and text alignment
   Roboto = loadFont("Roboto-Light-20.vlw");
   textFont(Roboto);
   fill(34, 53, 66);
   textAlign(LEFT, CENTER);
-  text("Score: "+score, 10, 20) ;
-  
- //modified scrolling background code from PhiLho
+  text("Score: "+score, 10, 20);
+
+  //modified scrolling background code from PhiLho
 
   //for
   //looping through a segment of the array and adjusting the Y of the platforms 
@@ -182,9 +182,10 @@ void runGame() {
   //if scrollPos is equal to the GRID_SIZE currentPos is negative making it go up 
   if (scrollPos == GRID_SIZE) {
 
-
+    //moving the cube up on y axis
     cube.gridY++;
 
+    //negative making it go up 
     currentPos--;
 
     //setting it back to 1 to reloop again from the start 
@@ -196,7 +197,7 @@ void runGame() {
       currentPos=numberOfPlatforms + currentPos;
     }// End
   }
-  
+
   //end of modified scrolling background code from PhiLho
 
   //check if platform and cube hit
@@ -213,19 +214,28 @@ void runGame() {
 void runFail() {
 
   // The fail game screen and roboto font;
-
   Roboto = loadFont("Roboto-Light-20.vlw");
+  background(failFill);
 
+  //cube position
   cube.x=-900;
   cube.y=-900;
 
-  //align the text 
+  //align and format the text 
   textFont(Roboto); 
   textAlign(CENTER, CENTER);
-  background(failFill);
   fill(34, 53, 66);
 
-  text("Score: "+(score), 187.5, 400);
+  //if statement
+  //if the score is greater then highscore make that the new highscore
+  if (score > highScore)
+  {
+    highScore=score;
+  } 
+
+  //text to be displayed
+  text("Score: "+score, 187.5, 400);
+  text("Best: "+highScore, 187.5, 430);
 }
 
 
@@ -255,6 +265,7 @@ void keyPressed() {
   if (key=='r') {
     //reset the game 
     screen=1;
+    score=0;
     reset();
     frameRate(80);
     loop();

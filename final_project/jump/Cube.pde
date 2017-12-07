@@ -42,8 +42,7 @@ class Cube {
       if ((dist(x, y, p1.x, p1.y) <= SIZE/2 + p1.platformH/2 ) ) {
         platformHit=true; 
 
-        println(frameRate);
-
+  
         //changing the speed of the game to make it harder 
         if (score==10) {
           frameRate(100);
