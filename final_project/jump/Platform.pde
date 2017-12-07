@@ -10,6 +10,8 @@ class Platform {
   int y=0;
   //// The fill of the platform
 
+  // random color code from asimes
+
   // create a random value for R, G, and B
   color r1 = color(random(255), random(255), random(255));
 
@@ -21,6 +23,7 @@ class Platform {
 
   color platformFill = color(choicesR[selected], choicesG[selected], choicesB[selected]);
 
+  //end of code from asimes
 
   /////////////// Constructor ///////////////
 

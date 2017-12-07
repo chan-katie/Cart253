@@ -9,12 +9,11 @@ class Sound {
   int x;
   int y;
 
-
   // The fill of the ball
   PImage soundFill;
   PImage muteFill;
 
-  // for the button 
+  // for the on/off button 
   boolean onOff = false;
   /////////////// Constructor ///////////////
 
@@ -43,9 +42,11 @@ class Sound {
     soundFill= loadImage("imgs/play.png");
     muteFill= loadImage("imgs/mute.png");
 
+    // on/off button code from Jesse Scott
+
     //if statement
     //
-    //mute and unmute the sound based on mouseclick 
+    //mute and unmute the sound based on boolean mouseclick 
     if (onOff == true) {
       image(muteFill, x, y, w, h);
       beats.mute();
@@ -54,6 +55,8 @@ class Sound {
       image(soundFill, x, y, w, h);
       beats.unmute();
     }
+
+    // end of on/off button code from Jesse Scott
   }
 
 
@@ -62,7 +65,11 @@ class Sound {
   // What to do when the mouse is clicked
   void mouseClicked() {
 
-    //switching to the on/off states
+    // on/off button code from Jesse Scott
+
+     //switching to the on/off states
     onOff= !onOff ;
+
+    // end of on/off button code from Jesse Scott
   }
 }

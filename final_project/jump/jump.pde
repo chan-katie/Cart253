@@ -1,11 +1,11 @@
 //Jump
 //
 // An endless vertical scrolling game, where players have to keep
-// the character on the screen by jumping up on the platforms. 
-// If they miss a platform they lose and the game is over
+// the character on the screen by jumping up on to 
+// the left or right platform If they miss a platform
+// they lose and the game is over
 //
 // By: Katie Chan 
-
 
 import ddf.minim.analysis.*;
 import ddf.minim.*;
@@ -86,12 +86,16 @@ void reset() {
   //play and loop the beat
   beats.play();
   beats.loop();
+  
+  //modified scrolling background code from PhiLho 
 
   //the middle of the screen
   halfScreen = height / GRID_SIZE / 2;
 
   //where you are in the array
   currentPos = numberOfPlatforms-halfScreen;
+  
+ //end modified scrolling background code from PhiLho
 
   //for making platforms 
   for (int i=0; i<numberOfPlatforms; i++) {
@@ -150,6 +154,8 @@ void runGame() {
   fill(34, 53, 66);
   textAlign(LEFT, CENTER);
   text("Score: "+score, 10, 20) ;
+  
+ //modified scrolling background code from PhiLho
 
   //for
   //looping through a segment of the array and adjusting the Y of the platforms 
@@ -190,6 +196,8 @@ void runGame() {
       currentPos=numberOfPlatforms + currentPos;
     }// End
   }
+  
+  //end of modified scrolling background code from PhiLho
 
   //check if platform and cube hit
   cube.checkHit(platforms); 

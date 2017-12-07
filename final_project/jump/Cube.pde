@@ -38,8 +38,6 @@ class Cube {
 
     for (Platform p1 : platforms) {
 
-      // println("cube "+x+","+y+"  plat1 "+p1.x+","+p1.y+" "+dist(x, y, p1.x, p1.y));
-
       //if the cube and platform touch 
       if ((dist(x, y, p1.x, p1.y) <= SIZE/2 + p1.platformH/2 ) ) {
         platformHit=true; 
@@ -51,7 +49,7 @@ class Cube {
           frameRate(100);
         }
         if (score==15) {
-          frameRate(135);
+          frameRate(140);
         }
         if (score==20) {
           frameRate(150);
