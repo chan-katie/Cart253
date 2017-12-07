@@ -14,7 +14,7 @@ class Sound {
   PImage soundFill;
   PImage muteFill;
 
-
+  // for the button 
   boolean onOff = false;
   /////////////// Constructor ///////////////
 
@@ -28,8 +28,6 @@ class Sound {
 
   /////////////// Methods ////////////////
 
-
-
   // display()
   //
   // Draw the sound at its position
@@ -41,26 +39,30 @@ class Sound {
     noStroke();
     imageMode(CENTER);
 
-
+    //loading the images for sound buttons 
     soundFill= loadImage("imgs/play.png");
     muteFill= loadImage("imgs/mute.png");
 
+    //if statement
+    //
+    //mute and unmute the sound based on mouseclick 
     if (onOff == true) {
       image(muteFill, x, y, w, h);
-      beats.pause();
+      beats.mute();
     } else {
 
       image(soundFill, x, y, w, h);
-      beats.play();
-
-      //loop the music once it stops 
-    beats.loop();
+      beats.unmute();
     }
   }
 
 
+  // mouseClicked()
+  //
+  // What to do when the mouse is clicked
   void mouseClicked() {
-    onOff= !onOff ;// this switches it to the opposite state
-    println(onOff); // just to check...
+
+    //switching to the on/off states
+    onOff= !onOff ;
   }
 }

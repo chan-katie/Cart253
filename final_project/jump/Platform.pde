@@ -31,7 +31,7 @@ class Platform {
     platformH = _h;
   }
 
-/////////////// Methods ////////////////
+  /////////////// Methods ////////////////
 
   // display()
   //
@@ -41,7 +41,7 @@ class Platform {
     noStroke();
     fill(platformFill);
     rectMode(CENTER);
-   
+
     // Draw the image platforms
     rect(x, y, platformW, platformH);
   }

@@ -50,13 +50,13 @@ class Cube {
         if (score==10) {
           frameRate(100);
         }
-       if (score==15) {
+        if (score==15) {
           frameRate(135);
         }
         if (score==20) {
           frameRate(150);
         }
-         if (score==25) {
+        if (score==25) {
           frameRate(175);
         }
         if (score==30) {
@@ -115,7 +115,6 @@ class Cube {
     // Draw the image platforms
     image(cubeFill, x, y, WIDTH, HEIGHT);
   }
-
 
   // keyPressed()
   //

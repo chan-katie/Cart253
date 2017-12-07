@@ -59,8 +59,6 @@ void setup() {
   minim = new Minim(this); // Make the Minim manager class into an object
   beats = minim.loadFile("data/POL-chubby-cat-short.wav", 1024);
 
-
-
   //set the frameRate
   frameRate(80);
 
@@ -78,11 +76,16 @@ void setup() {
 // call this to reset the game 
 
 void reset() {
-  println(xPlatform);
 
+  //setting the number of platforms 
   numberOfPlatforms=50;
 
+  //score starts at 0
   score=0;
+
+  //play and loop the beat
+  beats.play();
+  beats.loop();
 
   //the middle of the screen
   halfScreen = height / GRID_SIZE / 2;
@@ -114,15 +117,12 @@ void reset() {
 
 void draw() {
 
-
-
   if (screen == 0) {
     // menu
     background(start);
 
     //display sound
     sound.display();
- 
   }
 
   if (screen == 1) {
@@ -141,7 +141,8 @@ void runGame() {
   //setting the background  
   background(175, 195, 219);
 
-  sound.display();
+  //display sound
+  //  sound.display();
 
   //setting roboto font and text alignment
   Roboto = loadFont("Roboto-Light-20.vlw");
@@ -226,9 +227,7 @@ void runFail() {
 // so when the keypress is detected in the main program we need to
 // tell the cube
 void keyPressed() {
-  if ( (key=='m')) {
-    beats.pause();
-  }
+
 
   //start game when press spacebar
   if ((screen==0) && (key==' ')) {
@@ -254,8 +253,11 @@ void keyPressed() {
   }
 }
 
-void mouseClicked(){
-  
-sound.mouseClicked();
+// mouseClicked()
+//
+// What to do when the mouse is clicked
+void mouseClicked() {
 
+  //controlling the sound buttons 
+  sound.mouseClicked();
 }
