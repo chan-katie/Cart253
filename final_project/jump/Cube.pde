@@ -31,6 +31,7 @@ class Cube {
   // checking to see if the cube hits the platform
   void checkHit(ArrayList<Platform> platforms) {
 
+
     boolean platformHit=false;
 
     //for
@@ -42,8 +43,10 @@ class Cube {
       if ((dist(x, y, p1.x, p1.y) <= SIZE/2 + p1.platformH/2 ) ) {
         platformHit=true; 
 
-  
-        //changing the speed of the game to make it harder 
+        // Draw the image platforms
+        image(cubeFill, x, y, WIDTH, HEIGHT);
+
+        //changing the speed of the game to make it harder based on the score
         if (score==10) {
           frameRate(100);
         }
@@ -109,7 +112,7 @@ class Cube {
     noStroke();
     imageMode(CENTER);
 
-    // Draw the image platforms
+    // Draw the platforms
     image(cubeFill, x, y, WIDTH, HEIGHT);
   }
 
@@ -120,13 +123,11 @@ class Cube {
 
     // Check if the key is our left key
     if (keyCode== LEFT) {
-      // If so we want a positive y velocity
       //jump to the left
       x=140;
       gridY-=1;
     } // Otherwise check if the key is our right key 
     else if (keyCode == RIGHT) {
-      // If so we want a negative y velocity
       //jump to the right
       x=255;
       gridY-=1;

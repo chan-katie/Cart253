@@ -5,11 +5,11 @@ class Sound {
   int w=30;  
   int h=25;
 
-  // The location of the sound control
+  // The location of the sound buttons
   int x;
   int y;
 
-  // The fill of the ball
+  // The fill of the sound buttons 
   PImage soundFill;
   PImage muteFill;
 
@@ -31,9 +31,7 @@ class Sound {
   //
   // Draw the sound at its position
   void display() {
-
-    soundFill= loadImage("imgs/play.png");
-
+    
     // Set up the appearance of the sound
     noStroke();
     imageMode(CENTER);
@@ -51,14 +49,12 @@ class Sound {
       image(muteFill, x, y, w, h);
       beats.mute();
     } else {
-
       image(soundFill, x, y, w, h);
       beats.unmute();
     }
 
     // end of on/off button code from Jesse Scott
   }
-
 
   // mouseClicked()
   //
@@ -67,7 +63,7 @@ class Sound {
 
     // on/off button code from Jesse Scott
 
-     //switching to the on/off states
+    //switching to the on/off states
     onOff= !onOff ;
 
     // end of on/off button code from Jesse Scott

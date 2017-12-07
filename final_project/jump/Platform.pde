@@ -7,7 +7,7 @@ class Platform {
 
   // The location of the platform
   int x;
-  int y=0;
+  int y;
   //// The fill of the platform
 
   // random color code from asimes

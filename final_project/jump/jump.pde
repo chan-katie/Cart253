@@ -2,19 +2,19 @@
 //
 // An endless vertical scrolling game, where players have to keep
 // the character on the screen by jumping up on to 
-// the left or right platform If they miss a platform
-// they lose and the game is over
+// the platforms using the left and right arrow keys 
+// If they miss a platform they lose and the game is over
 //
 // By: Katie Chan 
 
 import ddf.minim.analysis.*;
 import ddf.minim.*;
 
-Minim minim; // Minim has a special class to handle sound tasks
+Minim minim; 
 AudioPlayer beats;
 BeatDetect music = new BeatDetect();
 
-// Global variables for the cube and platforms
+// Global variables for the cube, sound and platforms
 Cube cube; 
 Sound sound;
 ArrayList<Platform> platforms = new ArrayList<Platform>();
@@ -58,6 +58,7 @@ void setup() {
   //set the size 
   size(375, 665);
 
+
   //  load the music 
   minim = new Minim(this); // Make the Minim manager class into an object
   beats = minim.loadFile("data/POL-chubby-cat-short.wav", 1024);
@@ -69,7 +70,7 @@ void setup() {
   start = loadImage("imgs/start.jpg");
 
   failFill=loadImage("imgs/end.jpg");
-  
+
   //play and loop the beat
   beats.play();
   beats.loop();
@@ -227,13 +228,14 @@ void runFail() {
   fill(34, 53, 66);
 
   //if statement
+  //
   //if the score is greater then highscore make that the new highscore
   if (score > highScore)
   {
     highScore=score;
   } 
 
-  //text to be displayed
+  //text to be displayed score and highscore
   text("Score: "+score, 187.5, 400);
   text("Best: "+highScore, 187.5, 430);
 }
@@ -246,7 +248,6 @@ void runFail() {
 // tell the cube
 void keyPressed() {
 
-
   //start game when press spacebar
   if ((screen==0) && (key==' ')) {
     screen = 1;
@@ -256,16 +257,24 @@ void keyPressed() {
   if (screen==1) {
 
     cube.keyPressed();
+    //if statement
+    //
+    //if the cube moves start counting the score
     if ((cube.y > halfScreen*2-1)) {
+
+      //score going up
       score++;
     }
   }
 
   //press r to reset the game 
   if (key=='r') {
-    //reset the game 
+    //reset the game and values
     screen=1;
     score=0;
+    
+    //calling reset function
+    
     reset();
     frameRate(80);
     loop();
