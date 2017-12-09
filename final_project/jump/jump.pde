@@ -7,6 +7,40 @@
 //
 // By: Katie Chan 
 
+//Artistic Statement 
+//
+// The game is very simple and easy for anyone to play. 
+// The scrolling background was the most difficult part to 
+// do but with the code from PhiLho, I was able to piece it 
+// together along with the concepts we learnt in class. The 
+// most difficult part was getting all the platforms to seamlessly
+// flow after one another. Using the for loop I was able to go through
+// the platforms array and adjust the y based on the position of the 
+// platforms then add more if necessary. It's important to note that I had
+// to offset the y by the scroll position and display to make everything 
+// work. Once the y position was good the rest of scrolling came together
+// using the grid size and current position to scroll down from the top  
+// of the screen. Then I had to make sure the Y for the cube synced with
+// the background and would move accordingly.
+
+// The speed was a little difficult I was not sure how everything would 
+// speed up using the values from the scrolling background, but I did 
+// some research and found the frameRate() and was able to adjust that 
+// to make things go faster based on the score. I also learnt about 
+// creating buttons for the mute and the play sound button. I thought 
+// it was cool to have an on and off state with the if statement to 
+// make it work on mouseClicked. I could see how that could be 
+// implemented into another project. As far as the design of the of 
+// the game it was very simple and used minimal colors, fonts and images
+// which were easy to implement into the program. 
+
+// Overall I used a lot of if statements and for loops to make everything
+// work. It was interesting to see how putting together pieces of code
+// made everything work in the end. I feel as though I gained a better 
+// understanding of how much work goes into creating any game, it's a 
+// lot harder than you might think and gained a better knowledge of java. 
+
+
 import ddf.minim.analysis.*;
 import ddf.minim.*;
 
@@ -35,7 +69,7 @@ int xPlatform;
 int spacing=60;
 int numberOfPlatforms;
 
-//platform spacing
+//grid size
 final int GRID_SIZE=60;
 
 //scrolling background 
@@ -168,8 +202,9 @@ void runGame() {
     }
     //setting the y by offsetting it by the scroll position and display. 
     //If it is above it bring it down, if its below bring it up
-    platforms.get(index%numberOfPlatforms).y=(scrollPos+ 5 + (j) * GRID_SIZE);
+    platforms.get(index%numberOfPlatforms).y=(scrollPos + (j) * GRID_SIZE);
     platforms.get(index%numberOfPlatforms).display();
+
   }
 
   //update cube position, making it move
@@ -189,7 +224,7 @@ void runGame() {
     //negative making it go up 
     currentPos--;
 
-    //setting it back to 1 to reloop again from the start 
+    //scroll through platforms 
     scrollPos = 1;
 
     //if statement
